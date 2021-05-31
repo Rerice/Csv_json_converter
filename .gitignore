@@ -1,0 +1,7 @@
+env/
+tests/__pycache__/
+__pycache__/
+csv_json/__pycache__
+build/
+dist/
+Csv_Json_Converter.egg-info/
