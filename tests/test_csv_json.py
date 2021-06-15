@@ -32,6 +32,5 @@ class test_Csv_Json_Conv (unittest.TestCase):
             f2_list.append(rows2)
         self.assertListEqual(f1_list, f2_list)
 
-
 if __name__ == "__name__":
     unittest.main()
