@@ -5,7 +5,7 @@ with open("ReadMe.md", 'r') as f:
 
 setup (
     name = 'Csv_Json_Converter',
-    version = '1.0.0',
+    version = '1.1.0',
     author = 'Rerice', 
     author_email = 'maxim.covalev@gmail.com',
     description = 'Аccepts files as input and converts them to csv or json format',

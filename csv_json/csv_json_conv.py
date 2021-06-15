@@ -34,7 +34,6 @@ def json_to_csv(file_json):
         writer.writerow(data)
         return os.path.abspath(os.path.splitext(file_json)[0]+".csv")
 
-
 def csv_to_json(file_csv):
 
     with open (file_csv, "r") as f:
