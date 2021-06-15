@@ -12,7 +12,7 @@ class test_Csv_Json_Conv (unittest.TestCase):
         f1_list = list()
         f2_list = list()
         f1 = open (abs_path("file1_example.csv"), "r")
-        json_to_csv(abs_path("file1.json"), True)
+        json_to_csv(abs_path("file1.json"))
         f2 = open (abs_path("file1.csv"), "r")
         for rows1 in f1:
             f1_list.append(rows1)
@@ -24,7 +24,7 @@ class test_Csv_Json_Conv (unittest.TestCase):
         f1_list = list()
         f2_list = list()
         f1 = open (abs_path("file2_example.json"), "r")
-        csv_to_json(abs_path("file2.csv"), True)
+        csv_to_json(abs_path("file2.csv"))
         f2 = open (abs_path("file2.json"), "r")
         for rows1 in f1:
             f1_list.append(rows1)

@@ -2,8 +2,7 @@ import json
 import csv
 import os
 
-
-def json_to_csv(file_json, file_creating = True):
+def json_to_csv(file_json):
 
     with open (file_json, "r") as f:
 
@@ -11,10 +10,10 @@ def json_to_csv(file_json, file_creating = True):
             out = {}
 
             def flatten(value, name =''):
-                if type(value) is dict:
+                if isinstance(value, dict):
                     for item in value:
                         flatten(value[item], name + item + '_')
-                elif type(value) is list:
+                elif isinstance(value, list):
                     i = 0
                     for item in value:                
                         flatten(item, name + str(i) + '_')
@@ -33,46 +32,28 @@ def json_to_csv(file_json, file_creating = True):
         writer = csv.DictWriter (f, fieldnames= headers)
         writer.writeheader()
         writer.writerow(data)
-        if (file_creating):
-            return f
-        else:
-            f.close()
-            file_name = os.path.splitext(file_json)[0]+".csv"
-            path = os.path.abspath(file_name)
-            os.remove(path)
-            return f
+        return os.path.abspath(os.path.splitext(file_json)[0]+".csv")
 
 
-def csv_to_json(file_csv, file_creating = True):
+def csv_to_json(file_csv):
 
-    with open (file_csv, "r", newline='') as f:
+    with open (file_csv, "r") as f:
 
         data = []
         reader = csv.reader(f)
-        for row in reader:
-            arr_of_keys = row
-            break
-        reader = csv.reader(f)
+        arr_of_keys = reader.__next__()
         for row in reader:
             Dict_of_data = {}
             i = 0
-            if (row == []):
+            if not row:
                 continue
             for key in arr_of_keys:
-                while (i <= len(row)):
+                if i <= len(row):
                     Dict_of_data[key] = row[i]
                     i += 1
-                    break  
             data.append(Dict_of_data)
 
     with open (os.path.splitext(file_csv)[0]+".json", "w") as f:
 
         json.dump(data, f, indent = 4)
-        if (file_creating):
-            return f
-        else:
-            f.close()
-            file_name = os.path.splitext(file_csv)[0]+".json"
-            path = os.path.abspath(file_name)
-            os.remove(path)
-            return f
+        return os.path.abspath(os.path.splitext(file_csv)[0]+".json")
